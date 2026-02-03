@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.5.2)
+      concurrent-ruby (~> 1.0)
     action_text-trix (2.1.16)
       railties
     actioncable (8.1.2)
@@ -104,9 +106,6 @@ GEM
     connection_pool (3.0.2)
     crass (1.0.6)
     date (3.5.1)
-    debug (1.11.1)
-      irb (~> 1.10)
-      reline (>= 0.3.8)
     dotenv (3.2.0)
     drb (2.2.3)
     ed25519 (1.4.0)
@@ -383,12 +382,12 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  aasm
   bcrypt (~> 3.1.7)
   bootsnap
   brakeman
   bundler-audit
   capybara
-  debug
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
@@ -409,6 +408,7 @@ DEPENDENCIES
   web-console
 
 CHECKSUMS
+  aasm (5.5.2) sha256=a3b874b33d9cbb3be4a2c77185c340a07fb46d7cd31911cbc49337e31d12612f
   action_text-trix (2.1.16) sha256=f645a2c21821b8449fd1d6770708f4031c91a2eedf9ef476e9be93c64e703a8a
   actioncable (8.1.2) sha256=dc31efc34cca9cdefc5c691ddb8b4b214c0ea5cd1372108cbc1377767fb91969
   actionmailbox (8.1.2) sha256=058b2fb1980e5d5a894f675475fcfa45c62631103d5a2596d9610ec81581889b
@@ -437,7 +437,6 @@ CHECKSUMS
   connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
-  debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6
   dotenv (3.2.0) sha256=e375b83121ea7ca4ce20f214740076129ab8514cd81378161f11c03853fe619d
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
   ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
@@ -553,4 +552,4 @@ CHECKSUMS
   zeitwerk (2.7.4) sha256=2bef90f356bdafe9a6c2bd32bcd804f83a4f9b8bc27f3600fff051eb3edcec8b
 
 BUNDLED WITH
-  4.0.3
+  4.0.5
