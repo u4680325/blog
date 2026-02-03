@@ -20,12 +20,11 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%#= stylesheet_link_tag "https://cdn.simplecss.org/simple.css" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= button_to "Sign out", session_path, method: :delete if authenticated? %>
+    <%= button_to "Logout", session_path, method: :delete, style: "float: right; background-color:#71797E; border:none; margin-top:0.3rem;" if authenticated? %>
     <%= yield %>
   </body>
 </html>

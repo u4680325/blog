@@ -1,8 +1,15 @@
 <%= form_with(model: post) do |form| %>
+  <p>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.rich_textarea :body %>
+  </p>
+
   <% if post.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+      <h4><%= pluralize(post.errors.count, "error") %></h4>
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,17 +18,7 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.rich_textarea :body %>
-  </div>
-
-  <div>
+  <p>
     <%= form.submit %>
-  </div>
+  </p>
 <% end %>
