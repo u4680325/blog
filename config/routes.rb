@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :post_categories
   resource :session
   resources :passwords, param: :token
   resources :posts do

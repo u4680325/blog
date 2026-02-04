@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   has_rich_text :body
   has_many :comments
-  
+
   include AASM
 
   aasm :status, column: :status do
