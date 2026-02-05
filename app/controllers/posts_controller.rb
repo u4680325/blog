@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.reverse
   end
 
   # GET /posts/1 or /posts/1.json
@@ -12,17 +12,18 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @post_categories = PostCategory.all
     @post = Post.new
   end
 
   # GET /posts/1/edit
   def edit
+    @post_categories = PostCategory.all
   end
 
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-    @post.post_category = PostCategory.first
     @post.user = User.first
     respond_to do |format|
       if @post.save
@@ -66,6 +67,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.expect(post: [ :title, :body ])
+    params.expect(post: [ :title, :body, :post_category_id ])
   end
 end

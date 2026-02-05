@@ -35,7 +35,7 @@
 }
 
 /* Dark theme */
-/*@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
     --bg: #212121;
@@ -54,7 +54,7 @@
   video {
     opacity: 0.8;
   }
-}*/
+}
 
 /* Reset box-sizing */
 *, *::before, *::after {
