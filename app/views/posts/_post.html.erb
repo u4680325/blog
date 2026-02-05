@@ -1,15 +1,13 @@
 <div id="<%= dom_id post %>">
-  <div>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </div>
-
-  <div>
-    <strong>Body:</strong>
+  <p>
+    <strong><%= post.post_category.name %>:</strong>
+    <%= link_to post.title, post %>
+    (<i><%= post.status %></i>)
+  </p>
+  <p>
     <%= post.body %>
-  </div>
-
-  <div>
+  </p>
+  <p>
     <%= time_tag post.created_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> <strong>created</strong> | <%= time_tag post.updated_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> <strong>updated</strong>
-  </div>
+  </p>
 </div>

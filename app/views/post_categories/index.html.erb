@@ -1,9 +1,6 @@
 <p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Post categories" %>
-
 <h1>Post categories</h1>
-
 <div id="post_categories">
   <% @post_categories.each do |post_category| %>
     <%= render post_category %>
@@ -12,5 +9,4 @@
     </p>
   <% end %>
 </div>
-
 <%= link_to "New post category", new_post_category_path %>
