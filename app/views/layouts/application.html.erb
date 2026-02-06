@@ -23,12 +23,12 @@
       <div style="position:relative;margin-top:0.3rem;">
         <%= link_to "WIS BLOG", posts_path, style: "text-decoration:underline;color:#0F52BA;font-size:1.5rem;font-weight:bold;" %>
         <div style="position:absolute;right:0;top:0;">
-          <ul style="display:flex;list-style-type:none;margin:0;gap:1rem;">
+          <ul style="display:flex;list-style-type:none;margin:0;gap:0.5rem;">
             <li>
-              <%= button_to "+ Post", new_post_path, method: :get, style: "background-color:#008000; border:none;" %>
+              <%= link_to "+ Post", new_post_path, class: "button", style: "background-color:#008000; border:none;" %>
             </li>
             <li>
-              <%= button_to "Logout", session_path, method: :delete, style: "background-color:#71797E; border:none;" %>
+              <%= button_to "Logout", session_path, method: :delete, style: "background-color:#71797E; border:none;", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Logout?" } %>
             </li>
           </ul>
         </div>

@@ -1,9 +1,12 @@
 <%= turbo_stream_from @post %>
 <div style="color: green"><%= notice %></div>
 <%= render @post %>
-<p>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-  <%= button_to "Delete", @post, method: :delete %>
-</p>
+<ul style="display:flex;list-style-type:none;margin:0;gap:0.5rem;">
+  <li>
+    <%= link_to "Edit", edit_post_path(@post), class: "button", style: "background-color:orange;border:none;" %>
+  </li>
+  <li>
+    <%= button_to "Delete", @post, method: :delete, data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Delete this post?" }, style: "background-color:red;border:none;" %>
+  </li>
+</ul>
 <%= render "comments/comments", post: @post %>

@@ -1,0 +1,35 @@
+[33mcommit fd930ec5c4b5580923b69db068b4c7fc5f64444b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Sarit Yongsiri <u4680325@gmail.com>
+Date:   Thu Feb 5 23:17:11 2026 +0700
+
+    post category dropdown select
+
+[33mcommit 0f45534f8d805291cc041bc14a6e884cfe58c01f[m
+Author: Sarit Yongsiri <u4680325@gmail.com>
+Date:   Thu Feb 5 22:27:25 2026 +0700
+
+    add gem annotate
+
+[33mcommit 86ce6221747032a641366667f183eca732b4579b[m
+Author: Sarit Yongsiri <u4680325@gmail.com>
+Date:   Wed Feb 4 12:49:50 2026 +0700
+
+    add post_categories
+
+[33mcommit a6e84fe9d5fcf1e37e9a23a4044584bbaa18ef50[m
+Author: Sarit Yongsiri <u4680325@gmail.com>
+Date:   Tue Feb 3 22:47:10 2026 +0700
+
+    beauty
+
+[33mcommit 5cb3b6695f99293574ba05d85f5883f9130cfb98[m
+Author: Sarit Yongsiri <u4680325@gmail.com>
+Date:   Tue Feb 3 19:40:45 2026 +0700
+
+    add aasm state machine for status
+
+[33mcommit a3c13826afcfa0fb2811292b7102bebf132cc884[m
+Author: Sarit Yongsiri <u4680325@gmail.com>
+Date:   Mon Feb 2 21:58:43 2026 +0700
+
+    blog by DHH
