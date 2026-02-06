@@ -24,12 +24,13 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-    @post.user = User.first
+    @post.user = Current.user
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
+        @post_categories = PostCategory.all
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

@@ -1,4 +1,4 @@
-<div id="comments">
-  <%= render post.comments %>
-</div>
 <%= render "comments/new", post: post %>
+<div id="comments">
+  <%= render post.comments.reverse %>
+</div>

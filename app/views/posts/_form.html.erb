@@ -20,9 +20,9 @@
     <% end %>
     <p>
       <% if post.new_record? %>
-        <%= form.submit "Submit", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Submit?" } %>
+        <%= form.submit "Submit", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Submit?" }, style: "background-color:#008000;" %>
       <% else %>
-        <%= form.submit "Update", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Update?" } %>
+        <%= form.submit "Update", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Update?" }, style: "background-color:orange;"  %>
       <% end %>
     </p>
   <% end %>
