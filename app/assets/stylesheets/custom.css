@@ -1,7 +1,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: light;
-    --bg: #fff;
+    --bg: #f5f5f5;
     --accent-bg: #f5f7ff;
     --text: #212121;
     --text-light: #585858;
@@ -14,3 +14,26 @@
     --disabled: #efefef;
   }
 }
+button,
+.button,
+a.button, /* extra specificity to override a */
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  border: none;
+  background-color: var(--accent);
+  color: var(--accent-text);
+  padding: 0.5em;
+  text-decoration: none;
+  line-height: normal;
+}
+
+.multi_row {
+  border-radius: 5px;
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+  background-color: #fff;
+}
+/*.multi_row:nth-child(odd) {
+  background-color: #eee;
+}*/

@@ -21,7 +21,7 @@ class Post < ApplicationRecord
   has_rich_text :body
   belongs_to :post_category
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   include AASM
 

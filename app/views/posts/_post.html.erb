@@ -1,13 +1,13 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong><%= post.post_category.name %>:</strong>
-    <%= link_to post.title, post %>
-    (<i><%= post.status %></i>)
-  </p>
-  <p>
+<%= link_to post, style: "text-decoration: none;color: inherit;" do %>
+  <div id="<%= dom_id post %>" class="multi_row">
+    <div style="display:flex;justify-content:flex-end;">
+      <%= post.status.capitalize() %>
+    </div>
+    <%= post.post_category.name %>: <strong><%= post.user.name %></strong><br>
+    <span style="font-size: 1.8rem;"><%= post.title %></span>
     <%= post.body %>
-  </p>
-  <p>
-    <%= time_tag post.created_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> <strong>created</strong> | <%= time_tag post.updated_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> <strong>updated</strong>
-  </p>
-</div>
+    <div style="display:flex;justify-content:flex-end;">
+      <i><small><%= time_tag post.created_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> | <%= time_tag post.updated_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %></small></i>
+    </div>
+  </div>
+<% end %>
