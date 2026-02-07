@@ -2,6 +2,6 @@
 <% content_for :title, "Posts" %>
 <div id="posts">
   <% @posts.each do |post| %>
-    <%= render post %>
+    <%= render "posts/posts", post: post %>
   <% end %>
 </div>

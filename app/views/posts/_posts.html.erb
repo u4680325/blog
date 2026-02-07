@@ -1,0 +1,13 @@
+<%= link_to post, style: "text-decoration: none;color: inherit;" do %>
+  <div id="<%= dom_id post %>" class="multi_row">
+    <div style="display:flex;justify-content:flex-end;">
+      <%= post.status.capitalize() %>
+    </div>
+    <%= post.post_category.name %>: <strong><%= post.user.name %></strong><br>
+    <span style="font-size: 1.8rem;"><%= post.title %></span>
+    <%= post.body %>
+    <div style="display:flex;justify-content:flex-end;">
+      <i><small><%= time_tag post.created_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> | <%= time_tag post.updated_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %></small></i>
+    </div>
+  </div>
+<% end %>
