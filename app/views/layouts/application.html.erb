@@ -29,12 +29,14 @@
                 <%= link_to "+ Post", new_post_path, class: "button", style: "background-color:#008000;" %>
               </li>
             <% elsif action_name == "show" %>
-              <li>
-                <%= link_to "Edit", edit_post_path(@post), class: "button", style: "background-color:orange;" %>
-              </li>
-              <li>
-                <%= button_to "Delete", @post, method: :delete, data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Delete?" }, style: "background-color:red;" %>
-              </li>
+              <% if @post.pending? %>
+                <li>
+                  <%= link_to "Edit", edit_post_path(@post), class: "button", style: "background-color:orange;" %>
+                </li>
+                <li>
+                  <%= button_to "Delete", @post, method: :delete, data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Delete?" }, style: "background-color:red;" %>
+                </li>
+              <% end %>
               <li>
                 <%= link_to "Back", posts_path, class: "button", style: "background-color:#71797E;" %>
               </li>

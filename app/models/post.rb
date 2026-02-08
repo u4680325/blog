@@ -30,15 +30,15 @@ class Post < ApplicationRecord
     state :cancelled, :rejected, :approved, :achieved
 
     event :cancel do
-      transitions from: [:pending, :approved], to: :cancelled
+      transitions from: [:pending], to: :cancelled
     end
 
     event :reject do
-      transitions from: [:pending, :achieved], to: :rejected
+      transitions from: [:pending], to: :rejected
     end
 
     event :approve do
-      transitions from: [:pending, :achieved], to: :approved
+      transitions from: [:pending], to: :approved
     end
 
     event :achieve do
