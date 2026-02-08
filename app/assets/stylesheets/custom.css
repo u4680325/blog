@@ -14,6 +14,7 @@
     --disabled: #efefef;
   }
 }
+
 button,
 .button,
 a.button, /* extra specificity to override a */
@@ -27,18 +28,21 @@ input[type="button"] {
   text-decoration: none;
   line-height: normal;
 }
+
 .single_row {
   border-radius: 5px;
   margin-top: 0.4rem;
   padding: 0.4rem;
   background-color: #fff;
 }
+
 .multi_row {
   border-radius: 5px;
   margin-top: 0.4rem;
   padding: 0.4rem;
   background-color: #fff;
 }
+
 /*.multi_row:nth-child(odd) {
   background-color: #eee;
 }*/

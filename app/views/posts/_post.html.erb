@@ -3,7 +3,7 @@
     #<%= post.id %> <%= post.status.capitalize() %>
   </div>
   <%= post.post_category.name %>: <strong><%= post.user.name %></strong><br>
-  <span style="font-size: 1.8rem;"><%= post.title %></span>
+  <span style="font-size:1.8rem;"><%= post.title %></span>
   <%= post.body %>
   <div style="display:flex;justify-content:flex-end;">
     <i><small>created: <%= time_tag post.created_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> | updated: <%= time_tag post.updated_at, "data-local": "time-ago" %></small></i>
