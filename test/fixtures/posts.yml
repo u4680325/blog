@@ -3,13 +3,14 @@
 # Table name: posts
 #
 #  id               :integer          not null, primary key
+#  title            :string
 #  body             :text
 #  created_at       :datetime         not null
-#  status           :string
-#  title            :string
 #  updated_at       :datetime         not null
+#  status           :string
 #  post_category_id :integer          not null
 #  user_id          :integer          not null
+#  approvers        :text
 #
 # Indexes
 #

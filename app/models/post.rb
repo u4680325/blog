@@ -3,13 +3,14 @@
 # Table name: posts
 #
 #  id               :integer          not null, primary key
+#  title            :string
 #  body             :text
 #  created_at       :datetime         not null
-#  status           :string
-#  title            :string
 #  updated_at       :datetime         not null
+#  status           :string
 #  post_category_id :integer          not null
 #  user_id          :integer          not null
+#  approvers        :text
 #
 # Indexes
 #
@@ -22,6 +23,15 @@ class Post < ApplicationRecord
   belongs_to :post_category
   belongs_to :user
   has_many :comments, dependent: :destroy
+
+  serialize :approvers, type: Array, coder: YAML
+  # Optional: set a default value in an `after_initialize` callback or use
+  # a database default value (if using a more modern approach/Rails version)
+
+  # A common pattern to ensure new records have an empty array by default:
+  after_initialize do |post|
+    post.approvers ||= []
+  end
 
   include AASM
 

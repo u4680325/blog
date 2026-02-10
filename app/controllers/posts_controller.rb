@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.approvers = @post.post_category.approvers
     @post.user = Current.user
     respond_to do |format|
       if @post.save

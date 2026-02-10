@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_06_130917) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_09_142343) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -60,6 +60,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_06_130917) do
   end
 
   create_table "post_categories", force: :cascade do |t|
+    t.text "approvers"
     t.datetime "created_at", null: false
     t.string "name"
     t.string "pattern"
@@ -67,6 +68,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_06_130917) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.text "approvers"
     t.text "body"
     t.datetime "created_at", null: false
     t.integer "post_category_id", null: false
