@@ -1,7 +1,7 @@
 <%= link_to post, style: "text-decoration: none;color: inherit;" do %>
   <div id="<%= dom_id post %>" class="multi_row">
     <div style="display:flex;justify-content:flex-end;">
-      <%= post.status.capitalize() %>
+      #<%= post.id %> <%= post.status.capitalize() %>
     </div>
     <%= post.post_category.name %>: <strong><%= post.user.name %></strong><br>
     <span style="font-size:1.8rem;"><%= post.title %></span>

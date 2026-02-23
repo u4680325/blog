@@ -3,7 +3,7 @@
   <%= form_with(model: post) do |form| %>
     <p>
       <%= form.collection_select :post_category_id, post_categories, :id, :name, include_blank: false %>
-      <%= form.text_field :title %>
+      <%= form.text_field :title, autofocus: true %>
     </p>
     <p>
       <%= form.rich_textarea :body, placeholder: "" %>
