@@ -1,28 +1,44 @@
-  <%#= form_with model: post, data: { controller: "confirm", action: "submit->confirm#submit", confirm_message_value: "Submit this post?" } do |form| %>
-  <%#= form.submit "Submit" %>
-  <%= form_with(model: post) do |form| %>
-    <p>
-      <%= form.collection_select :post_category_id, post_categories, :id, :name, include_blank: false %>
-      <%= form.text_field :title, autofocus: true %>
-    </p>
-    <p>
-      <%= form.rich_textarea :body, placeholder: "" %>
-    </p>
-    <% if post.errors.any? %>
-      <div style="color:red;">
-        <h4><%= pluralize(post.errors.count, "error") %></h4>
-        <ul>
-          <% post.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <p>
-      <% if post.new_record? %>
-        <%= form.submit "Submit", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Submit?" }, style: "background-color:#008000;" %>
-      <% else %>
-        <%= form.submit "Update", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Update?" }, style: "background-color:orange;"  %>
-      <% end %>
-    </p>
+<%= form_with(model: post) do |form| %>
+  <p>
+    <%= form.collection_select :post_category_id, post_categories, :id, :name, include_blank: false %>
+    <%= form.text_field :title, autofocus: true %>
+  </p>
+  <p>
+    <%= form.rich_textarea :body %>
+  </p>
+  <% if post.errors.any? %>
+    <div style="color:red;">
+      <h4><%= pluralize(post.errors.count, "error") %></h4>
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
+  <p>
+    <% if post.new_record? %>
+      <%= form.submit "Submit", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Submit?" }, style: "background-color:#008000;" %>
+    <% else %>
+      <%= form.submit "Update", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Update?" }, style: "background-color:orange;"  %>
+    <% end %>
+  </p>
+<% end %>
+<script>
+  (function() {
+    const select = document.getElementById("post_post_category_id");
+    const post_body = document.getElementById("post_body");
+    const patterns = {
+      <% post_categories.each do |post_category| %>
+        <%= post_category.id %>: "<%= post_category.pattern %>",
+      <% end %>
+    };
+
+    if (select) {
+      select.addEventListener("change", function() {
+        post_body.setAttribute("placeholder", patterns[select.value]);
+      });
+      post_body.setAttribute("placeholder", patterns[select.value]);
+    }
+  })();
+</script>
