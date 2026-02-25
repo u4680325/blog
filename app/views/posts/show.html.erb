@@ -1,6 +1,9 @@
 <%= turbo_stream_from @post %>
-<div style="color:green;"><%= notice %></div>
-<div>
+<div id="comments" style="max-height:86vw;overflow-y:auto;">
+  <div style="color:green;"><%= notice %></div>
   <%= render @post %>
+  <%= render "comments/comments", post: @post %>
 </div>
-<%= render "comments/comments", post: @post %>
+<div style="position:sticky;bottom:0;">
+  <%= render "comments/new", post: @post %>
+</div>

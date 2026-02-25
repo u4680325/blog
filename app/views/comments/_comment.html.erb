@@ -1,12 +1,14 @@
 <% if comment.user == Current.user %>
   <div id="<%= dom_id(comment) %>" style="width:100%;margin-bottom:0.8em;display:flex;justify-content:flex-end;">
-    <span style="width:30%;text-align:right;padding-right:0.5em;color:grey;"><small><%= time_tag comment.updated_at, "data-local": "time-ago" %></small></span>
-    <span style="width:70%;text-align:right;color:#1877f2;"><%= comment.content %></span>
+    <span style="min-width:36%;text-align:right;padding-right:0.5em;color:grey;"><small><%= time_tag comment.updated_at, "data-local": "time-ago" %></small></span>
+    <span style="display:block;max-width:64%;color:#1877f2;overflow-wrap:break-word;">
+      <span style="text-align:right;"><%= comment.content %></span>
+    </span>
   </div>
 <% else %>
   <div id="<%= dom_id(comment) %>" style="width:70%;margin-bottom:0.8em;">
     <span style="color:grey;">@<%= comment.user.name %> <small><%= time_tag comment.updated_at, "data-local": "time-ago" %></small></span>
     <br>
-    <span style="color:purple;"><%= comment.content %></span>
+    <span style="color:purple;overflow-wrap:break-word;"><%= comment.content %></span>
   </div>
 <% end %>

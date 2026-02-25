@@ -1,5 +1,5 @@
 <%= form_with model: [ post, Comment.new ] do |form| %>
-  <%= form.text_field :content, autofocus: true, style: "width:100%;margin:0.5em 0 0 0;" %>
+  <%= form.text_field :content, autofocus: true, style: "width:100%;" %>
   <div style="display:flex;justify-content:flex-end;">
     <%#= form.submit "Reply" %>
     <%= image_submit_tag("send-icon.svg", height: "44", style: "border:none;") %>
