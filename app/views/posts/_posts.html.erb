@@ -4,8 +4,8 @@
       #<%= post.id %> <%= post.status.capitalize() %>
     </div>
     <%= post.post_category.name %>: <strong><%= post.user.name %></strong><br>
-    <div style="overflow-y:auto;max-height:40vw;">
-      <span style="font-size:1.8rem;"><%= post.title %></span>
+    <div style="max-height:44vh;overflow-y:auto;">
+      <span style="font-size:1.8rem;color:purple;"><%= post.title %></span>
       <%= post.body %>
     </div>
     <div style="display:flex;justify-content:flex-end;">
