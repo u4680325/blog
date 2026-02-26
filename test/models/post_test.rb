@@ -12,6 +12,8 @@
 #  updated_at       :datetime         not null
 #  user_id          :integer          not null
 #  voters           :text
+#  permits          :text
+#  votes            :text
 #
 # Indexes
 #

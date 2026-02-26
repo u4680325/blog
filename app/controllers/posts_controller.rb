@@ -29,8 +29,11 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-    @post.approvers = @post.post_category.approvers
-    @post.voters = @post.post_category.voters
+    @post.approvers = @post.post_category.approvers unless @post.post_category.approvers.empty?
+    unless @post.post_category.voters.empty?
+      @post.voters = @post.post_category.voters
+      @post.votes = [0,0,0,0,0,0,0,0,0,0]
+    end
     @post.user = Current.user
     respond_to do |format|
       if @post.save

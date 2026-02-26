@@ -3,10 +3,29 @@ class CommentsController < ApplicationController
 
   def create
     if params[:comment][:content].present?
-      @comment = @post.comments.new params.expect(comment: [ :content ])
-      @comment.user = Current.user
-      @comment.save
-      redirect_to @post
+      if params[:comment][:content].start_with?("/") && params[:comment][:content].length == 2
+        case params[:comment][:content][1]
+        when "a"
+          # Code to execute if approve
+        when "r"
+          # Code to execute if reject
+        when /\d/
+          if @post.voters.include?(Current.user.email_address)
+            @post.votes[params[:comment][:content][1].to_i] += 1
+            @post.voters.delete(Current.user.email_address)
+            if @post.save
+              redirect_to @post, notice: "You have successfully voted ##{params[:comment][:content][1]}."
+            end
+          end
+        else
+          # Code to execute if no condition matches
+        end
+      else
+        @comment = @post.comments.new params.expect(comment: [ :content ])
+        @comment.user = Current.user
+        @comment.save
+        redirect_to @post
+      end
     end
   end
 

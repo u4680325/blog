@@ -3,8 +3,24 @@
     #<%= post.id %> <%= post.status.capitalize() %>
   </div>
   <%= post.post_category.name %>: <strong><%= post.user.name %></strong><br>
-  <span style="font-size:1.8rem;color:purple;"><%= post.title %></span>
+  <span style="font-size:1.8rem;color:purple;"><u><%= post.title %></u></span>
   <%= post.body %>
+  <% unless post.votes.empty? %>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>TOTAL VOTES</th>
+      </tr>
+      <% post.votes.each_with_index do |total, index| %>
+        <% if total > 0 %>
+          <tr>
+            <td style="font-weight:bold;"><%= index %></td>
+            <td style="text-align:right;"><%= total %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% end %>
   <div style="display:flex;justify-content:flex-end;">
     <i><small>created: <%= time_tag post.created_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> | updated: <%= time_tag post.updated_at, "data-local": "time-ago" %></small></i>
   </div>
