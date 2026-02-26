@@ -30,6 +30,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.approvers = @post.post_category.approvers
+    @post.voters = @post.post_category.voters
     @post.user = Current.user
     respond_to do |format|
       if @post.save

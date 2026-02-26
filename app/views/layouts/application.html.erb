@@ -33,7 +33,7 @@
                 <%= link_to "+ Post", new_post_path, class: "button", style: "background-color:#008000;" %>
               </li>
             <% elsif action_name == "show" %>
-              <% if @post.pending? %>
+              <% if @post.user == Current.user && @post.pending? %>
                 <li>
                   <%= link_to "Edit", edit_post_path(@post), class: "button", style: "background-color:orange;" %>
                 </li>

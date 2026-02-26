@@ -3,11 +3,12 @@
 # Table name: post_categories
 #
 #  id         :integer          not null, primary key
+#  approvers  :text
+#  created_at :datetime         not null
 #  name       :string
 #  pattern    :string
-#  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  approvers  :text
+#  voters     :text
 #
 
 require "test_helper"
