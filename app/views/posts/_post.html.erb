@@ -5,7 +5,7 @@
   <%= post.post_category.name %>: <strong><%= post.user.name %></strong><br>
   <span style="font-size:1.8rem;color:purple;"><u><%= post.title %></u></span>
   <%= post.body %>
-  <% unless post.approvers.empty? %>
+  <% if post.pending? && !post.approvers.empty? %>
     <p>
       Waiting for approval: <%= post.approvers %>
     </p>
