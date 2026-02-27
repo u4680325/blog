@@ -14,6 +14,7 @@
 #  voters           :text
 #  permits          :text
 #  votes            :text
+#  rejected_by      :string
 #
 # Indexes
 #
@@ -61,7 +62,7 @@ class Post < ApplicationRecord
     end
 
     event :achieve do
-      transitions from: [:rejected, :approved], to: :achieved
+      transitions from: [:pending, :rejected, :approved], to: :achieved
     end
   end
 end

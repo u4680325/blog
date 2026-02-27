@@ -14,6 +14,7 @@
 #  voters           :text
 #  permits          :text
 #  votes            :text
+#  rejected_by      :string
 #
 # Indexes
 #
