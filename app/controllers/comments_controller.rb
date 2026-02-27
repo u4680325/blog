@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
           if @post.user == Current.user && !@post.votes.empty?
             @post.achieve
             if @post.save
+              @post.comments.create!(user: Current.user, content: "ACHIEVED!!! /a")
               redirect_to @post, notice: "This post have successfully been achieved."
             end
           end
@@ -20,16 +21,18 @@ class CommentsController < ApplicationController
             @post.approvers.delete(Current.user.email_address)
             @post.approve if @post.approvers.empty?
             if @post.save
+              @post.comments.create!(user: Current.user, content: "APPROVED!!! /y")
               redirect_to @post, notice: "You have successfully approved."
             end
           end
         when "n"
           # Code to execute if /n (reject)
-          if @post.approvers.include?(Current.user.email_address)
+          if @post.approvers.include?(Current.user.email_address) || @post.permits.include?(Current.user.email_address)
             @post.rejected_by = Current.user.email_address
             @post.approvers.delete(Current.user.email_address)
             @post.reject
             if @post.save
+              @post.comments.create!(user: Current.user, content: "REJECTED!!! /n")
               redirect_to @post, notice: "You have successfully rejected."
             end
           end

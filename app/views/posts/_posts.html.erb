@@ -1,12 +1,33 @@
 <%= link_to post, style: "text-decoration: none;color: inherit;" do %>
   <div id="<%= dom_id post %>" class="multi_row">
     <div style="display:flex;justify-content:flex-end;">
-      #<%= post.id %> <%= post.status.capitalize() %>
+      #<%= post.id %> <%= post.status.capitalize() unless post.pending? %>
     </div>
     <%= post.post_category.name %>: <strong><%= post.user.name %></strong><br>
     <div style="max-height:44vh;overflow-y:auto;">
       <span style="font-size:1.8rem;color:purple;"><u><%= post.title %></u></span>
       <%= post.body %>
+      <% unless post.approvers.empty? %>
+        <p>
+          Waiting for approval: <%= post.approvers %>
+        </p>
+      <% end %>
+      <% unless post.votes.empty? %>
+        <table>
+          <tr>
+            <th>#</th>
+            <th>TOTAL VOTES</th>
+          </tr>
+          <% post.votes.each_with_index do |total, index| %>
+            <% if total > 0 %>
+              <tr>
+                <td style="font-weight:bold;"><%= index %></td>
+                <td style="text-align:right;"><%= total %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      <% end %>
     </div>
     <div style="display:flex;justify-content:flex-end;">
       <i><small><%= time_tag post.created_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %> | <%= time_tag post.updated_at, "data-local": "time", "data-format": "%d-%m-%Y %H:%M" %></small></i>
