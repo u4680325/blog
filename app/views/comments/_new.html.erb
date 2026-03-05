@@ -1,7 +1,15 @@
-<%= form_with model: [ post, Comment.new ] do |form| %>
+<%= form_with model: [ post, Comment.new ], id: "post_comment" do |form| %>
   <div style="display:flex;">
     <%= form.text_field :content, autofocus: true, style: "min-width:calc(100% - 40px);" %>
     <%= image_submit_tag("send-icon.svg", height: "38", style: "padding:6px;border:none;") %>
     <%#= form.submit "Reply" %>
   </div>
 <% end %>
+<script>
+  const myForm = document.getElementById("post_comment");
+
+  myForm.addEventListener("submit", (event) => {
+    myForm.submit();
+    myForm.reset();
+  });
+</script>

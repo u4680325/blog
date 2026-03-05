@@ -1,4 +1,36 @@
 <%= turbo_stream_from post %>
-<div id="comments">
+<div id="comments" >
   <%= render post.comments %>
 </div>
+<% content_for :head_styles do %>
+  <style type="text/css">
+    .comment {
+      width: 70%;
+      margin-bottom: 0.8em;
+    }
+    .time-tag {
+      color: grey;
+    }
+    .message {
+      color: purple;
+      overflow-wrap: break-word;
+    }
+    .comment.user-<%= Current.user.id %> {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .comment.user-<%= Current.user.id %> .time-tag {
+      min-width: 36%;
+      text-align: right;
+      padding-right: 0.5em;
+    }
+    .comment.user-<%= Current.user.id %> .time-tag span {
+      display: none;
+    }
+    .comment.user-<%= Current.user.id %> .message {
+      max-width: 64%;
+      color: #1877f2;
+    }
+  </style>
+<% end %>

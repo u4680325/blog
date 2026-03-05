@@ -52,7 +52,8 @@ class CommentsController < ApplicationController
         @comment = @post.comments.new params.expect(comment: [ :content ])
         @comment.user = Current.user
         if @comment.save
-          redirect_to @post
+          # redirect_to @post
+          @comment.broadcast_append_to @comment.post, target: "comments", partial: "comments/comment"
         end
       end
     end
