@@ -38,10 +38,12 @@ class CommentsController < ApplicationController
         when /\d/
           # Code to execute if /0..9 (vote)
           if @post.pending_voters.include?(Current.user.email_address)
-            @post.votes[params[:comment][:content][1].to_i] += 1
-            @post.pending_voters.delete(Current.user.email_address)
-            if @post.save
-              redirect_to @post, notice: "You have successfully voted ##{params[:comment][:content][1]}."
+            @post.with_lock do
+              @post.votes[params[:comment][:content][1].to_i] += 1
+              @post.pending_voters.delete(Current.user.email_address)
+              if @post.save
+                redirect_to @post, notice: "You have successfully voted ##{params[:comment][:content][1]}."
+              end
             end
           end
         else
@@ -51,10 +53,10 @@ class CommentsController < ApplicationController
       else
         @comment = @post.comments.new params.expect(comment: [ :content ])
         @comment.user = Current.user
-        if @comment.save
-          # redirect_to @post
-          @comment.broadcast_append_to @comment.post, target: "comments", partial: "comments/comment"
-        end
+        @comment.save
+        # if @comment.save
+        # @comment.broadcast_append_to @comment.post, target: "comments", partial: "comments/comment"
+        # end
       end
     end
   end
