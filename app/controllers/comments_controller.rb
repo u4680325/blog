@@ -16,10 +16,10 @@ class CommentsController < ApplicationController
           end
         when "y"
           # Code to execute if /y (approve)
-          if @post.approvers.include?(Current.user.email_address)
-            @post.permits << Current.user.email_address
-            @post.approvers.delete(Current.user.email_address)
-            @post.approve if @post.approvers.empty?
+          if @post.pending_approvers.include?(Current.user.email_address)
+            @post.approvers << Current.user.email_address
+            @post.pending_approvers.delete(Current.user.email_address)
+            @post.approve if @post.pending_approvers.empty?
             if @post.save
               @post.comments.create!(user: Current.user, content: "APPROVED!!! /y")
               redirect_to @post, notice: "You have successfully approved."
@@ -27,9 +27,8 @@ class CommentsController < ApplicationController
           end
         when "n"
           # Code to execute if /n (reject)
-          if @post.approvers.include?(Current.user.email_address) || @post.permits.include?(Current.user.email_address)
+          if @post.pending_approvers.include?(Current.user.email_address) || @post.approvers.include?(Current.user.email_address)
             @post.rejected_by = Current.user.email_address
-            @post.approvers.delete(Current.user.email_address)
             @post.reject
             if @post.save
               @post.comments.create!(user: Current.user, content: "REJECTED!!! /n")
@@ -38,15 +37,16 @@ class CommentsController < ApplicationController
           end
         when /\d/
           # Code to execute if /0..9 (vote)
-          if @post.voters.include?(Current.user.email_address)
+          if @post.pending_voters.include?(Current.user.email_address)
             @post.votes[params[:comment][:content][1].to_i] += 1
-            @post.voters.delete(Current.user.email_address)
+            @post.pending_voters.delete(Current.user.email_address)
             if @post.save
               redirect_to @post, notice: "You have successfully voted ##{params[:comment][:content][1]}."
             end
           end
         else
           # Code to execute if no condition matches
+          redirect_to @post, notice: "#{params[:comment][:content]} is not a command."
         end
       else
         @comment = @post.comments.new params.expect(comment: [ :content ])

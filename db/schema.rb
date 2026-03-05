@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_27_040320) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_05_132904) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -72,14 +72,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_040320) do
     t.text "approvers"
     t.text "body"
     t.datetime "created_at", null: false
-    t.text "permits"
+    t.text "pending_approvers"
+    t.text "pending_voters"
     t.integer "post_category_id", null: false
     t.string "rejected_by"
     t.string "status"
     t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.text "voters"
     t.text "votes"
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"

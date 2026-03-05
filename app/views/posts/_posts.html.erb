@@ -7,9 +7,13 @@
     <div style="max-height:44vh;overflow-y:auto;">
       <span style="font-size:1.8rem;color:purple;"><u><%= post.title %></u></span>
       <%= post.body %>
-      <% if post.pending? && !post.approvers.empty? %>
+      <% if post.pending? && !post.pending_approvers.empty? %>
         <p>
-          Waiting for approval: <%= post.approvers %>
+          Waiting for approval: <%= post.pending_approvers %>
+        </p>
+      <% elsif post.rejected? %>
+        <p>
+          Rejected by: <%= post.rejected_by %>
         </p>
       <% end %>
       <% unless post.votes.empty? %>

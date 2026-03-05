@@ -6,10 +6,19 @@
   </div>
 <% end %>
 <script>
-  const myForm = document.getElementById("post_comment");
+  (function() {
+    const form = document.getElementById("post_comment");
 
-  myForm.addEventListener("submit", (event) => {
-    myForm.submit();
-    myForm.reset();
-  });
+    form.addEventListener("submit", (event) => {
+      form.submit();
+      const formData = new FormData(form);
+      const formObject = Object.fromEntries(formData);
+      const content = formObject["comment[content]"];
+      if (content.startsWith("/") && content.length == 2 ) {
+        console.log("is_command")
+      } else {
+        form.reset();
+      }
+    });
+  })();
 </script>

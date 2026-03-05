@@ -2,19 +2,19 @@
 #
 # Table name: posts
 #
-#  id               :integer          not null, primary key
-#  approvers        :text
-#  body             :text
-#  created_at       :datetime         not null
-#  post_category_id :integer          not null
-#  status           :string
-#  title            :string
-#  updated_at       :datetime         not null
-#  user_id          :integer          not null
-#  voters           :text
-#  permits          :text
-#  votes            :text
-#  rejected_by      :string
+#  id                :integer          not null, primary key
+#  body              :text
+#  created_at        :datetime         not null
+#  status            :string
+#  title             :string
+#  updated_at        :datetime         not null
+#  post_category_id  :integer          not null
+#  user_id           :integer          not null
+#  approvers         :text
+#  pending_voters    :text
+#  pending_approvers :text
+#  votes             :text
+#  rejected_by       :string
 #
 # Indexes
 #

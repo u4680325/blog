@@ -2,19 +2,19 @@
 #
 # Table name: posts
 #
-#  id               :integer          not null, primary key
-#  approvers        :text
-#  body             :text
-#  created_at       :datetime         not null
-#  post_category_id :integer          not null
-#  status           :string
-#  title            :string
-#  updated_at       :datetime         not null
-#  user_id          :integer          not null
-#  voters           :text
-#  permits          :text
-#  votes            :text
-#  rejected_by      :string
+#  id                :integer          not null, primary key
+#  body              :text
+#  created_at        :datetime         not null
+#  status            :string
+#  title             :string
+#  updated_at        :datetime         not null
+#  post_category_id  :integer          not null
+#  user_id           :integer          not null
+#  approvers         :text
+#  pending_voters    :text
+#  pending_approvers :text
+#  votes             :text
+#  rejected_by       :string
 #
 # Indexes
 #
@@ -28,18 +28,18 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  serialize :pending_approvers, type: Array, coder: YAML
   serialize :approvers, type: Array, coder: YAML
-  serialize :permits, type: Array, coder: YAML
-  serialize :voters, type: Array, coder: YAML
+  serialize :pending_voters, type: Array, coder: YAML
   serialize :votes, type: Array, coder: YAML
   # Optional: set a default value in an `after_initialize` callback or use
   # a database default value (if using a more modern approach/Rails version)
 
   # A common pattern to ensure new records have an empty array by default:
   after_initialize do |post|
+    post.pending_approvers ||= []
     post.approvers ||= []
-    post.permits ||= []
-    post.voters ||= []
+    post.pending_voters ||= []
     post.votes ||= []
   end
 
