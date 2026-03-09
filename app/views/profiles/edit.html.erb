@@ -1,0 +1,19 @@
+<% content_for :title, "Profile" %>
+<p style="margin-bottom:0;font-size:1.5em"><strong><%= Current.user.name %></strong>: <i><%= Current.user.email_address %></i></p>
+<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<%= form_with url: profile_path, method: :patch do |form| %>
+  <p>
+    <label>Current password</label>
+    <%= form.password_field :current_password, required: true, autocomplete: "current-password", placeholder: "Current password" %>
+  </p>
+  <p>
+    <label>New password</label>
+    <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "New password", maxlength: 72 %>
+  </p>
+  <p>
+    <label>Confirm new password</label>
+    <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm new password", maxlength: 72 %>
+  </p>
+  <%= form.submit "Update Password" %>
+<% end %>

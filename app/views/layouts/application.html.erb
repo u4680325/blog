@@ -25,37 +25,45 @@
     </script>
   </head>
   <body>
-    <% if authenticated? && controller_name == "posts" %>
+    <% if authenticated? && %w[posts profiles].include?(controller_name) %>
       <div style="position:relative;margin-top:0.4rem;">
         <%= link_to "WIS BLOG", posts_path, style: "text-decoration:underline;color:#0F52BA;font-size:1.5rem;font-weight:bold;" %>
         <div style="position:absolute;right:0;top:0;">
           <ul style="display:flex;list-style-type:none;margin:0;gap:0.4rem;">
-            <% if action_name == "index" %>
-              <li>
-                <%= link_to "+ Post", new_post_path, class: "button", style: "background-color:#008000;" %>
-              </li>
-            <% elsif action_name == "show" %>
-              <% if @post.user == Current.user && @post.pending? %>
+            <% if controller_name == "posts" %>
+              <% if action_name == "index" %>
                 <li>
-                  <%= link_to "Edit", edit_post_path(@post), class: "button", style: "background-color:orange;" %>
+                  <%= link_to "+ Post", new_post_path, class: "button", style: "background-color:#008000;" %>
                 </li>
                 <li>
-                  <%= button_to "Delete", @post, method: :delete, data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Delete?" }, style: "background-color:red;" %>
+                  <%= link_to "Profile", edit_profile_path, class: "button", style: "background-color:orange;" %>
+                </li>
+              <% elsif action_name == "show" %>
+                <% if @post.user == Current.user && @post.pending? %>
+                  <li>
+                    <%= link_to "Edit", edit_post_path(@post), class: "button", style: "background-color:orange;" %>
+                  </li>
+                  <li>
+                    <%= button_to "Delete", @post, method: :delete, data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Delete?" }, style: "background-color:red;" %>
+                  </li>
+                <% end %>
+                <li>
+                  <%= link_to "Back", posts_path, class: "button", style: "background-color:#71797E;" %>
+                </li>
+              <% elsif action_name == "edit" %>
+                <li>
+                  <%= link_to "Back", @post, class: "button", style: "background-color:#71797E;" %>
+                </li>
+              <% elsif action_name == "new" %>
+                <li>
+                  <%= link_to "Back", posts_path, class: "button", style: "background-color:#71797E;" %>
                 </li>
               <% end %>
-              <li>
-                <%= link_to "Back", posts_path, class: "button", style: "background-color:#71797E;" %>
-              </li>
-            <% elsif action_name == "edit" %>
-              <li>
-                <%= link_to "Back", @post, class: "button", style: "background-color:#71797E;" %>
-              </li>
-            <% elsif action_name == "new" %>
+            <% elsif controller_name == "profiles" %>
               <li>
                 <%= link_to "Back", posts_path, class: "button", style: "background-color:#71797E;" %>
               </li>
             <% end %>
-            &nbsp;
             <li>
               <%= button_to "Logout", session_path, method: :delete, style: "background-color:#000;", data: { controller: "confirm", action: "click->confirm#submit", confirm_message_value: "Logout?" } %>
             </li>
