@@ -7,7 +7,8 @@ class PostsController < ApplicationController
     @my_posts = @active_posts.where(user: Current.user)
     @approved_posts = @active_posts.where("approvers LIKE '%#{Current.user.email_address}%'")
     @unapproved_posts = @active_posts.where("pending_approvers LIKE '%#{Current.user.email_address}%'")
-    ids = PostCategory.where(name: "VOTE").pluck(:id)
+    # ids = PostCategory.where(name: "VOTE").pluck(:id)
+    ids = PostCategory.where("voters LIKE '%#{Current.user.email_address}%'").pluck(:id)
     @vote_post = @active_posts.where(post_category_id: ids)
     @posts = (@my_posts + @approved_posts + @unapproved_posts + @vote_post).uniq.sort_by(&:id).reverse
   end
