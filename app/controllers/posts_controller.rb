@@ -16,15 +16,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params.expect(:id))
-    if @post.user == Current.user
-      @post = Post.find(params.expect(:id))
-    elsif @post.post_category.approvers.include?(Current.user)
-      @post = Post.find(params.expect(:id))
-    elsif !@post.post_category.voters.empty?
-      @post = Post.find(params.expect(:id))
-    else
-      raise "Permission Denied"
-    end
+    raise "Permission Denied" unless @post.user == Current.user || @post.post_category.approvers.include?(Current.user.email_address) || @post.post_category.voters.include?(Current.user.email_address)
   end
 
   # GET /posts/new
