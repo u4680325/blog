@@ -30,7 +30,7 @@
     const post_body = document.getElementById("post_body");
     const patterns = {
       <% post_categories.each do |post_category| %>
-        <%= post_category.id %>: "<%= post_category.pattern %>",
+        <%= post_category.id %>: "<%= post_category.pattern.html_safe %>",
       <% end %>
     };
 

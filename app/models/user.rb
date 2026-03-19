@@ -5,9 +5,11 @@
 #  id              :integer          not null, primary key
 #  created_at      :datetime         not null
 #  email_address   :string           not null
-#  password_digest :string           not null
-#  updated_at      :datetime         not null
 #  name            :string
+#  password_digest :string           not null
+#  role_id         :integer          default(0), not null
+#  staff_id        :integer          default(0), not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
