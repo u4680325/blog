@@ -3,12 +3,27 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.where(status: ["pending","approved","rejected","achieved"]).reverse
+    @active_posts = Post.where.not(status: "cancelled")
+    @my_posts = @active_posts.where(user: Current.user)
+    @approved_posts = @active_posts.where("approvers LIKE '%#{Current.user.email_address}%'")
+    @unapproved_posts = @active_posts.where("pending_approvers LIKE '%#{Current.user.email_address}%'")
+    ids = PostCategory.where(name: "VOTE").pluck(:id)
+    @vote_post = @active_posts.where(post_category_id: ids)
+    @posts = (@my_posts + @approved_posts + @unapproved_posts + @vote_post).uniq.sort_by(&:id).reverse
   end
 
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params.expect(:id))
+    if @post.user == Current.user
+      @post = Post.find(params.expect(:id))
+    elsif @post.post_category.approvers.include?(Current.user)
+      @post = Post.find(params.expect(:id))
+    elsif !@post.post_category.voters.empty?
+      @post = Post.find(params.expect(:id))
+    else
+      raise "Permission Denied"
+    end
   end
 
   # GET /posts/new
