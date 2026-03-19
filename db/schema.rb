@@ -101,6 +101,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_19_020035) do
     t.string "password_digest", null: false
     t.integer "role_id", default: 0, null: false
     t.integer "staff_id", default: 0, null: false
+    t.integer "student_id", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
