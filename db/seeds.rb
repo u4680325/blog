@@ -172,4 +172,4 @@ end
   PostCategory.find_or_create_by!(name: pc[0], pattern: pc[1], approvers: pc[2])
 end
 
-PostCategory.create_with(voters: User.pluck(:email_address)).find_or_create_by!(name: "VOTE", pattern: "Choices [0..9]")
+PostCategory.create_with(voters: User.pluck(:staff_id)).find_or_create_by!(name: "VOTE (Staff)", pattern: "Choices [0..9]")

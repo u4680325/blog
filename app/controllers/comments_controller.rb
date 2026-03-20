@@ -37,10 +37,10 @@ class CommentsController < ApplicationController
           end
         when /\d/
           # Code to execute if /0..9 (vote)
-          if @post.pending_voters.include?(Current.user.email_address)
-            @post.with_lock do
+          @post.with_lock do
+            if @post.pending_voters.include?(Current.user.staff_id)
               @post.votes[params[:comment][:content][1].to_i] += 1
-              @post.pending_voters.delete(Current.user.email_address)
+              @post.pending_voters.delete(Current.user.staff_id)
               if @post.save
                 redirect_to @post, notice: "You have successfully voted ##{params[:comment][:content][1]}."
               end

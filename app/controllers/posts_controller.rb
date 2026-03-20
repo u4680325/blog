@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     @approved_posts = @active_posts.where("approvers LIKE '%#{Current.user.email_address}%'")
     @unapproved_posts = @active_posts.where("pending_approvers LIKE '%#{Current.user.email_address}%'")
     # ids = PostCategory.where(name: "VOTE").pluck(:id)
-    ids = PostCategory.where("voters LIKE '%#{Current.user.email_address}%'").pluck(:id)
+    ids = PostCategory.where("voters LIKE '%#{Current.user.staff_id}%'").pluck(:id)
     @vote_post = @active_posts.where(post_category_id: ids)
     @posts = (@my_posts + @approved_posts + @unapproved_posts + @vote_post).uniq.sort_by(&:id).reverse
   end
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params.expect(:id))
-    raise "Permission Denied" unless @post.user == Current.user || @post.post_category.approvers.include?(Current.user.email_address) || @post.post_category.voters.include?(Current.user.email_address)
+    raise "Permission Denied" unless @post.user == Current.user || @post.post_category.approvers.include?(Current.user.email_address) || @post.post_category.voters.include?(Current.user.staff_id)
   end
 
   # GET /posts/new
