@@ -7,10 +7,9 @@
 #  email_address   :string           not null
 #  name            :string
 #  password_digest :string           not null
-#  updated_at      :datetime         not null
-#  staff_id        :integer          default(0), not null
-#  student_id      :integer          default(0), not null
 #  role_id         :integer          default(0), not null
+#  staff_id        :integer          default(0), not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
