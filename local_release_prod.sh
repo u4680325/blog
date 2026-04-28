@@ -11,7 +11,7 @@ PROJECT="wis-samui"
 CLOUD_RUN_NAME="prod-school-blog-backend"
 IMAGE="asia-southeast1-docker.pkg.dev/$PROJECT/asia/$CLOUD_RUN_NAME"
 
-docker buildx build --platform linux/amd64 -t $IMAGE:latest -f Dockerfile.production --load .
+docker buildx build --platform linux/amd64 -t $IMAGE:latest -f Dockerfile --load .
 
 gcloud config set project wis-samui
 gcloud auth configure-docker asia-southeast1-docker.pkg.dev --quiet
