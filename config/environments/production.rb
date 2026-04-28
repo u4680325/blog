@@ -3,6 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
 
   config.hosts << "prod-school-blog-backend-874136740994.asia-southeast1.run.app"
+  config.hosts << "blog.wis-school.app"
 
   Rails.application.routes.default_url_options = { host: "https://prod-school-blog-backend-874136740994.asia-southeast1.run.app" }
   config.action_mailer.default_url_options = { host: "https://prod-school-blog-backend-874136740994.asia-southeast1.run.app" }
@@ -10,6 +11,7 @@ Rails.application.configure do
   Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
       origins "http://localhost:3000",
+              "https://blog.wis-school.app",
               "https://prod-school-blog-backend-874136740994.asia-southeast1.run.app"
       resource "*", headers: :any, methods: :any, credentials: true
     end
