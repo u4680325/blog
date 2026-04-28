@@ -1,0 +1,36 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 40 } %>
+  timeout: 5000
+  password: '<%= Rails.application.credentials.db_password %>'
+  host: "<%= ENV.fetch('DB_SOCKET_DIR') { '/cloudsql' } %>/<%= ENV['INSTANCE_CONNECTION_NAME'] %>"
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: school_blog_backend_production
+    username: school_blog_backend
+    password: '<%= Rails.application.credentials.db_password %>'
+    socket: "/cloudsql/wis-samui:asia-southeast1:production-databases"
+  cache:
+    <<: *primary_production
+    database: school_blog_backend_production_cache
+    migrations_paths: db/cache_migrate
+    username: school_blog_backend
+    password: '<%= Rails.application.credentials.db_password %>'
+    socket: "/cloudsql/wis-samui:asia-southeast1:production-databases"
+  queue:
+    <<: *primary_production
+    database: school_blog_backend_production_queue
+    migrations_paths: db/queue_migrate
+    username: school_blog_backend
+    password: '<%= Rails.application.credentials.db_password %>'
+    socket: "/cloudsql/wis-samui:asia-southeast1:production-databases"
+  cable:
+    <<: *primary_production
+    database: school_blog_backend_production_cable
+    migrations_paths: db/cable_migrate
+    username: school_blog_backend
+    password: '<%= Rails.application.credentials.db_password %>'
+    socket: "/cloudsql/wis-samui:asia-southeast1:production-databases"

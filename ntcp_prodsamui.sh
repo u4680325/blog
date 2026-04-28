@@ -1,0 +1,1 @@
+cloud-sql-proxy --address 0.0.0.0 --port 5431 wis-samui:asia-southeast1:production-databases

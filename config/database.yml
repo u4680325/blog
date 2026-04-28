@@ -20,21 +20,47 @@ test:
   <<: *default
   database: storage/test.sqlite3
 
-# Store production database in the storage/ directory, which by default
-# is mounted as a persistent Docker volume in config/deploy.yml.
 production:
-  primary:
-    <<: *default
-    database: storage/production.sqlite3
+  primary: 
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    host: 127.0.0.1
+    port: 5431
+    database: school_blog_backend_production
+    username: school_blog_backend
+    password: '<%= Rails.application.credentials.db_password %>'
+    socket: "/cloudsql/wis-samui:asia-southeast1:production-databases"
   cache:
-    <<: *default
-    database: storage/production_cache.sqlite3
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    host: 127.0.0.1
+    port: 5431
+    database: school_blog_backend_production_cache
     migrations_paths: db/cache_migrate
+    username: school_blog_backend
+    password: '<%= Rails.application.credentials.db_password %>'
+    socket: "/cloudsql/wis-samui:asia-southeast1:production-databases"
   queue:
-    <<: *default
-    database: storage/production_queue.sqlite3
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    host: 127.0.0.1
+    port: 5431
+    database: school_blog_backend_production_queue
     migrations_paths: db/queue_migrate
+    username: school_blog_backend
+    password: '<%= Rails.application.credentials.db_password %>'
+    socket: "/cloudsql/wis-samui:asia-southeast1:production-databases"
   cable:
-    <<: *default
-    database: storage/production_cable.sqlite3
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    host: 127.0.0.1
+    port: 5431
+    database: school_blog_backend_production_cable
     migrations_paths: db/cable_migrate
+    username: school_blog_backend
+    password: '<%= Rails.application.credentials.db_password %>'
+    socket: "/cloudsql/wis-samui:asia-southeast1:production-databases"
