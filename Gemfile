@@ -62,10 +62,16 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "annotate"
+  gem "rufo", require: false
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+end
+
+group :development, :dev, :uat, :production do
+  gem "falcon"
+  gem "falcon-rails"
 end
