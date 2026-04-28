@@ -1,6 +1,24 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+  config.hosts << "prod-school-blog-backend-874136740994.asia-southeast1.run.app"
+
+  Rails.application.routes.default_url_options = { host: "https://prod-school-blog-backend-874136740994.asia-southeast1.run.app" }
+  config.action_mailer.default_url_options = { host: "https://prod-school-blog-backend-874136740994.asia-southeast1.run.app" }
+
+  Rails.application.config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins "http://localhost:3000",
+              "https://prod-school-blog-backend-874136740994.asia-southeast1.run.app"
+      resource "*", headers: :any, methods: :any, credentials: true
+    end
+  end
+  config.server_timing = true
+  config.active_storage.service = :production_google
+  config.active_storage.resolve_model_to_route = :rails_storage_redirect
+  config.active_storage.service_urls_expire_in = 1.hour
+  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

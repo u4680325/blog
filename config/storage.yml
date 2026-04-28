@@ -25,3 +25,8 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+production_google:
+  service: GCS
+  project: wis-samui
+  bucket: school-blog-prod
